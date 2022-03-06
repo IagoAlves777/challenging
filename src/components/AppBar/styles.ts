@@ -7,13 +7,13 @@ export const Container = styled.div`
 
 export const ListMenu = styled.div`
   display: flex;
-  align-items:center;
+  align-items: center;
   li {
     list-style: none;
   }
   a {
-    font-family: 'League Gothic', sans-serif;
-    font-weight:bold;
+    font-family: "League Gothic", sans-serif;
+    font-weight: bold;
     padding: 15px 20px;
     display: inline-block;
     color: #e5e4e2;
@@ -24,5 +24,8 @@ export const ListMenu = styled.div`
   a:hover {
     background-color: #ca91ee;
     color: #6904bd;
+  }
+  img{
+    cursor: pointer;
   }
 `;

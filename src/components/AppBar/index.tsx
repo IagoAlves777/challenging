@@ -1,19 +1,20 @@
 import * as C from "./styles";
 import logo from "../../assets/logo.png";
-
+import { Link, useNavigate } from "react-router-dom";
 export const AppBar = () => {
+  const navigate = useNavigate();
   return (
     <C.Container>
       <C.ListMenu>
-        <img src={logo} alt="logo" />
-        <li><a href="/">Home</a></li>
-        <li><a href="/">Champions</a></li>
-        <li><a href="/">A.R.A.M</a></li>
-        <li><a href="/">U.R.F</a></li>
-        <li><a href="/">Stats</a></li>
-        <li><a href="/">Leaderboards</a></li>
-        <li><a href="/">Pro Matches</a></li>
-        <li><a href="/">Multi-Search</a></li>
+        <img src={logo} alt="logo" onClick={() => navigate("/")} />
+        <li><Link to='/'>Home</Link></li>
+        <li><Link to='/'>Champions</Link></li>
+        <li><Link to='/'>A.R.A.M</Link></li>
+        <li><Link to='/'>U.R.F</Link></li>
+        <li><Link to='/'>Stats</Link></li>
+        <li><Link to='/'>Leaderboards</Link></li>
+        <li><Link to='/'>Pro Matches</Link></li>
+        <li><Link to='/'>Multi-Search</Link></li>
       </C.ListMenu>
     </C.Container>
   );

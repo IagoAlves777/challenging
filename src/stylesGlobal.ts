@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-
 export default createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=League+Gothic&display=swap');
   *{
@@ -10,7 +9,6 @@ export default createGlobalStyle`
   }
   h1{
     font-family: 'Press Start 2P', cursive;
-    color:white;
   }
 
   body, input, button {
