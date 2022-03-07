@@ -14,7 +14,7 @@ type Props = {
 
 export const HomePage = ({ dataPlayer, setDataPlayer }: Props) => {
   const navigate = useNavigate();
-  const API_KEY = "RGAPI-d956a71a-d813-4076-8642-4d27ed4279dd";
+  const API_KEY = "RGAPI-c54d4550-aa4c-41f2-b5d7-48e85cd8a3ec";
   const [summonner, setSummonner] = useState<String>();
   const [notFound, setNotFound] = useState<Boolean>(false);
   const handleSubmit = (e: React.FormEvent) => {
@@ -38,20 +38,26 @@ export const HomePage = ({ dataPlayer, setDataPlayer }: Props) => {
   }
 
   const fetchMatchData = (puuid: string) => {
-    APICallString = "https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/"+puuid+"/ids?start=0&count=20&api_key="+API_KEY;
-    axios.get(APICallString).then(function(response){
+    APICallString = "https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuid + "/ids?start=0&count=20&api_key=" + API_KEY;
+    axios.get(APICallString).then(function (response) {
       let matchsId = response.data;
       //https://americas.api.riotgames.com/lol/match/v5/matches/BR1_2455531670?api_key=RGAPI-d956a71a-d813-4076-8642-4d27ed4279dd
       matchsId.map((match: any, index: number) => {
-        
+        APICallString = "https://americas.api.riotgames.com/lol/match/v5/matches/" + match + "?api_key=" + API_KEY;
+        axios.get(APICallString).then(function (response) {
+          console.log("🚀 ~ file: index.tsx ~ line 48 ~ axios.get ~ response", response)
+        }).catch(function (error) {
+          console.log("🚀 ~ file: index.tsx ~ line 42 ~ axios.get ~ error", error);
+        })
       })
-      axios.get(APICallString).then(function(response){
-        
-      }).catch(function (error){
+      axios.get(APICallString).then(function (response) {
+        console.log("🚀 ~ file: index.tsx ~ line 54 ~ response", response)
+
+      }).catch(function (error) {
+        console.log("🚀 ~ file: index.tsx ~ line 42 ~ axios.get ~ error", error);
+      })
+    }).catch(function (error) {
       console.log("🚀 ~ file: index.tsx ~ line 42 ~ axios.get ~ error", error);
-      })
-    }).catch(function (error){
-    console.log("🚀 ~ file: index.tsx ~ line 42 ~ axios.get ~ error", error);
     })
   }
   const handleChangeNick = (e: ChangeEvent<HTMLInputElement>) => {
