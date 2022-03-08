@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 import { AxiosResponse } from 'axios';
 function App() {
   const [dataPlayer, setDataPlayer] = useState<AxiosResponse<any, any>>();
-  const [dataMatch, setDataMatch] = useState<AxiosResponse<any, any>>();
+  const [matchs, setmatchs] = useState<any>([]);
   return (
     <BrowserRouter>
       <AppBar />
@@ -23,8 +23,8 @@ function App() {
           element={<HomePage
             dataPlayer={dataPlayer}
             setDataPlayer={setDataPlayer}
-            dataMatch={dataMatch}
-            setDataMatch={setDataMatch}
+            matchs={matchs}
+            setMatchs={setmatchs}
           />}
         >
         </Route>
