@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_KEY = "RGAPI-ac8e83ee-6985-45fd-bbde-c81d95244931";
+const API_KEY = "RGAPI-20f70d60-1006-465b-b8ae-d89b0d3a4ab0";
 
 class ServicoAPI {
   static getPlayerData(player: String | undefined): string {
@@ -17,11 +17,6 @@ class ServicoAPI {
   static getMatch(match: any): string{
     const APICallString = "https://americas.api.riotgames.com/lol/match/v5/matches/" + match + "?api_key=" + API_KEY;
     return APICallString;
-  }
-
-  static getData = async (call: string) => {
-    const res = await axios.get(call);
-    return res;
   }
 
 }

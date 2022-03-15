@@ -7,58 +7,30 @@ import { PlayerData } from "../PlayerData";
 import ServicoAPI from "../../service";
 
 type Props = {
-  dataPlayer: AxiosResponse<any, any> | undefined;
-  setDataPlayer: React.Dispatch<React.SetStateAction<AxiosResponse<any, any> | undefined>>
-  matchs: any;
-  setMatchs: React.Dispatch<any>;
+  summonner: String | undefined;
+  setSummonner: React.Dispatch<React.SetStateAction<String | undefined>>;
+  
 }
 
-export const HomePage = ({ dataPlayer, setDataPlayer, matchs, setMatchs }: Props) => {
+export const HomePage = ({ summonner, setSummonner }: Props) => {
   const navigate = useNavigate();
-  const [summonner, setSummonner] = useState<String>();
+  
   const [notFound, setNotFound] = useState<Boolean>(false);
-  const [matchsId, setmatchsId] = useState<any>([]);
+  
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    //navigate("/playerData");
     fetchPlayerData();
   }
-  useEffect(() => {
-    fetchmatchsId();
-  }, [dataPlayer])
-
-  useEffect(() => {
-    fetchmatchs();
-  }, [matchsId])
-
-  useEffect(() => {
-    console.log("🚀 ~ file: index.tsx ~ line 39 ~ HomePage ~ matchs", matchs)
-  }, [matchs])
-
-
-  const fetchPlayerData = async () => {
-    let APICallString = ServicoAPI.getPlayerData(summonner);
-    setDataPlayer(await ServicoAPI.getData(APICallString));
-    setSummonner("");
-    setNotFound(false);
-  }
-
-  const fetchmatchsId = async () => {
-    let APICallString = ServicoAPI.getAllmatchs(dataPlayer?.data.puuid);
-    setmatchsId(await ServicoAPI.getData(APICallString));
-  }
-
-  const fetchmatchs = async () => {
-    let partidas: AxiosResponse<any, any>[] = [];
-    matchsId.data.map(async (match: any, index: number) => {
-      let APICallString = ServicoAPI.getMatch(match);
-      let partida = await ServicoAPI.getData(APICallString);
-      partidas.push(partida)
+  const fetchPlayerData = () => {
+    const APICallString = ServicoAPI.getPlayerData(summonner)
+    axios.get(APICallString).then(function(){
+      navigate("/playerData");
+      setNotFound(false);
+    }).catch(function () {
+      return setNotFound(true);
     })
-    setMatchs(partidas);
   }
-
   const handleChangeNick = (e: ChangeEvent<HTMLInputElement>) => {
     setSummonner(e.target.value);
   }

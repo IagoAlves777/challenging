@@ -1,6 +1,5 @@
 import * as C from "./styles";
 import lulu from '../../assets/load.gif';
-import { Spinner } from "react-bootstrap";
 
 
 export const LoadScreen = () => {

@@ -12,7 +12,7 @@ import { PlayerData } from './Pages/PlayerData';
 import { useEffect, useState } from 'react';
 import { AxiosResponse } from 'axios';
 function App() {
-  const [dataPlayer, setDataPlayer] = useState<AxiosResponse<any, any>>();
+  const [summonner, setSummonner] = useState<String>();
   const [matchs, setmatchs] = useState<any>([]);
   return (
     <BrowserRouter>
@@ -21,18 +21,15 @@ function App() {
         <Route
           path='/'
           element={<HomePage
-            dataPlayer={dataPlayer}
-            setDataPlayer={setDataPlayer}
-            matchs={matchs}
-            setMatchs={setmatchs}
+            summonner={summonner}
+            setSummonner={setSummonner}
           />}
         >
         </Route>
         <Route
           path={'/playerData'}
           element={<PlayerData
-            dataPlayer={dataPlayer}
-            setDataPlayer={setDataPlayer}
+          summonner={summonner}
           />}
         >
         </Route>
